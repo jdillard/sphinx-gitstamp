@@ -8,7 +8,8 @@
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
 
-import os, datetime
+import os
+import datetime
 from sphinx import errors
 
 # Gets the datestamp of the latest commit on the given file
@@ -19,6 +20,8 @@ from sphinx import errors
 # Use the DOCSRC environment variable to determine the root of the
 # tree in git where the rst lives. Used if you are invoking this extension
 # from a makefile external to the conf.py directory
+
+
 def page_context_handler(app, pagename, templatename, context, doctree):
     import git
     global g
@@ -39,37 +42,39 @@ def page_context_handler(app, pagename, templatename, context, doctree):
         return
 
     try:
-        updated = g.log('--pretty=format:%ai','-n 1',"%s.rst" % fullpagename)
+        updated = g.log('--pretty=format:%ai', '-n 1', "%s.rst" % fullpagename)
         updated = updated[:10]
+
         if updated == "":
             # Don't datestamp generated rst's (e.g. imapd.conf.rst)
             # Ideally want to check their source - lib/imapoptions, etc, but
-            # that involves getting their source/output pair into the extension.
+            # that involves getting the source/output pair into the extension.
             return
+
         context['gitstamp'] = datetime.datetime
-            .strptime(updated, "%Y-%m-%d")
-            .strftime(app.config.gitstamp_fmt)
+        .strptime(updated, "%Y-%m-%d").strftime(app.config.gitstamp_fmt)
     except git.exc.GitCommandError:
         # File doesn't exist or something else went wrong.
         raise errors.ExtensionError("Can't fetch git history for %s.rst. Is \
             DOCSRC set correctly? (DOCSRC=%s)" % (fullpagename, docsrc))
     except ValueError:
         # Datestamp can't be parsed.
-        app.info("%s: Can't parse datestamp () %s ) for gitstamp, output won't \
-            have last updated time." % (pagename,updated))
+        app.info("%s: Can't parse datestamp () %s ) for gitstamp, output \
+            won't have last updated time." % (pagename, updated))
         pass
+
 
 # Only add the page context handler if we're generating html
 def what_build_am_i(app):
     global g
     if (app.builder.format != 'html'):
-        return;
+        return
 
     try:
         import git
     except ImportError:
-        raise errors.ExtensionError("gitpython package not installed. Required \
-            to generate html. Please run: pip install gitpython")
+        raise errors.ExtensionError("gitpython package not installed. \
+            Required to generate html. Please run: pip install gitpython")
 
     try:
         global g
@@ -81,6 +86,7 @@ def what_build_am_i(app):
     else:
         app.add_config_value('gitstamp_fmt', "%b %d %Y", 'html')
         app.connect('html-page-context', page_context_handler)
+
 
 # We can't immediately add a page context handler: we need to wait until we
 # know what the build output format is.
