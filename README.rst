@@ -67,7 +67,9 @@ License
 **sphinx-gitstamp** is made available under a **BSD license**; see `LICENSE`_ for
 details.
 
-Originally based on the gitstamp generator in the `cyrus-imapd`_ project.
+Originally based on the gitstamp generator in the `cyrus-imapd`_ project. This
+product includes software developed by Computing Services at Carnegie Mellon
+University (http://www.cmu.edu/computing/).
 
 .. _CONTRIBUTING: CONTRIBUTING.md
 .. _cyrus-imapd: https://github.com/cyrusimap/cyrus-imapd/pull/2029/files
