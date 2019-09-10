@@ -20,40 +20,44 @@ from sphinx import errors
 # tree in git where the rst lives. Used if you are invoking this extension
 # from a makefile external to the conf.py directory
 def page_context_handler(app, pagename, templatename, context, doctree):
-        import git
-        global g
-        if g is None:
-            # We have already errored about this
-            pass
-        fullpagename = pagename
-        docsrc = ''
-        try:
-            docsrc = app.confdir + "/"
-            if docsrc != "/":
-                fullpagename = docsrc + pagename
-        except KeyError:
-            pass
+    import git
+    global g
+    if g is None:
+        # We have already errored about this
+        pass
+    fullpagename = pagename
+    docsrc = ''
+    try:
+        docsrc = app.confdir + "/"
+        if docsrc != "/":
+            fullpagename = docsrc + pagename
+    except KeyError:
+        pass
 
-        # Don't barf on "genindex", "search", etc
-        if not os.path.isfile("%s.rst" % fullpagename):
+    # Don't barf on "genindex", "search", etc
+    if not os.path.isfile("%s.rst" % fullpagename):
+        return
+
+    try:
+        updated = g.log('--pretty=format:%ai','-n 1',"%s.rst" % fullpagename)
+        updated = updated[:10]
+        if updated == "":
+            # Don't datestamp generated rst's (e.g. imapd.conf.rst)
+            # Ideally want to check their source - lib/imapoptions, etc, but
+            # that involves getting their source/output pair into the extension.
             return
-
-        try:
-            updated = g.log('--pretty=format:%ai','-n 1',"%s.rst" % fullpagename)
-            updated = updated[:10]
-            if updated == "":
-                # Don't datestamp generated rst's (e.g. imapd.conf.rst)
-                # Ideally want to check their source - lib/imapoptions, etc, but
-                # that involves getting their source/output pair into the extension.
-                return
-            context['gitstamp'] = datetime.datetime.strptime(updated, "%Y-%m-%d").strftime(app.config.gitstamp_fmt)
-        except git.exc.GitCommandError:
-            # File doesn't exist or something else went wrong.
-            raise errors.ExtensionError("Can't fetch git history for %s.rst. Is DOCSRC set correctly? (DOCSRC=%s)" % (fullpagename, docsrc))
-        except ValueError:
-            # Datestamp can't be parsed.
-            app.info("%s: Can't parse datestamp () %s ) for gitstamp, output won't have last updated time." % (pagename,updated))
-            pass
+        context['gitstamp'] = datetime.datetime
+            .strptime(updated, "%Y-%m-%d")
+            .strftime(app.config.gitstamp_fmt)
+    except git.exc.GitCommandError:
+        # File doesn't exist or something else went wrong.
+        raise errors.ExtensionError("Can't fetch git history for %s.rst. Is \
+            DOCSRC set correctly? (DOCSRC=%s)" % (fullpagename, docsrc))
+    except ValueError:
+        # Datestamp can't be parsed.
+        app.info("%s: Can't parse datestamp () %s ) for gitstamp, output won't \
+            have last updated time." % (pagename,updated))
+        pass
 
 # Only add the page context handler if we're generating html
 def what_build_am_i(app):
@@ -64,14 +68,16 @@ def what_build_am_i(app):
     try:
         import git
     except ImportError:
-        raise errors.ExtensionError("gitpython package not installed. Required to generate html. Please run: pip install gitpython")
+        raise errors.ExtensionError("gitpython package not installed. Required \
+            to generate html. Please run: pip install gitpython")
 
     try:
         global g
         g = git.Git('.')
     except:
         app.info(sys.exc_info()[0])
-        app.warn("gitstamp extension enabled, but no git repository found. No git datestamps will be generated.")
+        app.warn("gitstamp extension enabled, but no git repository found. No \
+            git datestamps will be generated.")
     else:
         app.add_config_value('gitstamp_fmt', "%b %d %Y", 'html')
         app.connect('html-page-context', page_context_handler)
