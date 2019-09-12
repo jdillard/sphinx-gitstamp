@@ -10,7 +10,7 @@ setup(
     description='Sitemap generator for Sphinx',
     long_description=long_description,
     classifiers=[
-        'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: BSD License',
         'Topic :: Documentation',
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 3",
