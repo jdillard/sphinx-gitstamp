@@ -92,3 +92,7 @@ def what_build_am_i(app):
 # know what the build output format is.
 def setup(app):
     app.connect('builder-inited', what_build_am_i)
+
+    return {
+        'parallel_read_safe': False
+    }
