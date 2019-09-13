@@ -21,6 +21,6 @@ setup(
     install_requires=['six', 'sphinx >= 1.2'],
     url="https://github.com/jdillard/sphinx-gitstamp",
     license='MIT',
-    download_url="https://github.com/jdillard/sphinx-gitstamp/archive/v0.1.0.tar.gz",
+    download_url="https://github.com/jdillard/sphinx-gitstamp/archive/v0.2.0.tar.gz",
     packages=['sphinx_gitstamp'],
  )
