@@ -51,12 +51,16 @@ def page_context_handler(app, pagename, templatename, context, doctree):
             # that involves getting the source/output pair into the extension.
             return
 
-        context['gitstamp'] = datetime.datetime
-        .strptime(updated, "%Y-%m-%d").strftime(app.config.gitstamp_fmt)
+        context['gitstamp'] = datetime.datetime.strptime(
+                updated,
+                "%Y-%m-%d"
+            ).strftime(
+                app.config.gitstamp_fmt
+            )
     except git.exc.GitCommandError:
         # File doesn't exist or something else went wrong.
-        raise errors.ExtensionError("Can't fetch git history for %s.rst. Is \
-            DOCSRC set correctly? (DOCSRC=%s)" % (fullpagename, docsrc))
+        raise errors.ExtensionError("Can't fetch git history for %s.rst." %
+                                    fullpagename)
     except ValueError:
         # Datestamp can't be parsed.
         app.info("%s: Can't parse datestamp () %s ) for gitstamp, output \
