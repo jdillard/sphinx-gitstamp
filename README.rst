@@ -19,10 +19,20 @@ For example::
 
     extensions = ['sphinx_gitstamp']
 
-Set the value of `html_baseurl`_ in your Sphinx **conf.py** to the current
-base URL of your documentation with a trailing slash. For example::
+Set the value of ``gitstamp_fmt`` in **conf.py** to the desired date format.
+For example::
 
-    html_baseurl = 'https://my-site.com/docs/'
+    # Date format for git timestamps
+    gitstamp_fmt = "%b %d %Y"
+
+Add ``gitstamp`` to the template, for example::
+
+    {%- if gitstamp %} Last updated on {{ gitstamp }} {%- endif %}
+
+You will need the `gitpython`_ python package for performing datestamp
+operations::
+
+    pip install gitpython
 
 See Who Is Using It
 -------------------
@@ -75,7 +85,7 @@ University (http://www.cmu.edu/computing/).
 .. _cyrus-imapd: https://github.com/cyrusimap/cyrus-imapd/pull/2029/files
 .. _extensions: https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-extensions
 .. _GitHub search: https://github.com/search?utf8=%E2%9C%93&q=sphinx-gitstamp+extension%3Atxt&type=
-.. _html_baseurl: https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_baseurl
+.. _gitpython: https://gitpython.readthedocs.io/en/stable/
 .. _html_extra_path: http://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_extra_path
 .. _language: https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language
 .. _libraries.io: https://libraries.io/pypi/sphinx-gitstamp
