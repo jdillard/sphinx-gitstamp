@@ -7,7 +7,7 @@ exec(compile(
 
 setup(
     name='sphinx-gitstamp',
-    description='Sitemap generator for Sphinx',
+    description='git timestamp generator for Sphinx',
     long_description=long_description,
     classifiers=[
         'License :: OSI Approved :: BSD License',
