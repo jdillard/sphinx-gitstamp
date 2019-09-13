@@ -17,9 +17,6 @@ from sphinx import errors
 # Skips files whose datestamp we can't parse.
 # Expected git datestamp format: 2017-06-07 11:57:38 +1000
 # Output to June 7, 2017
-# Use the DOCSRC environment variable to determine the root of the
-# tree in git where the rst lives. Used if you are invoking this extension
-# from a makefile external to the conf.py directory
 
 
 def page_context_handler(app, pagename, templatename, context, doctree):
