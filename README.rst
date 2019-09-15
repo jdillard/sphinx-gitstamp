@@ -29,11 +29,6 @@ Add ``gitstamp`` to the template, for example::
 
     {%- if gitstamp %} Last updated on {{ gitstamp }} {%- endif %}
 
-You will need the `gitpython`_ python package for performing datestamp
-operations::
-
-    pip install gitpython
-
 See Who Is Using It
 -------------------
 
