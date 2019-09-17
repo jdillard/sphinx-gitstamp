@@ -19,7 +19,7 @@ For example::
 
     extensions = ['sphinx_gitstamp']
 
-Set the value of ``gitstamp_fmt`` in **conf.py** to the desired date format.
+Set the value of ``gitstamp_fmt`` in **conf.py** to the desired `time format`_.
 For example::
 
     # Date format for git timestamps
@@ -86,6 +86,7 @@ University (http://www.cmu.edu/computing/).
 .. _libraries.io: https://libraries.io/pypi/sphinx-gitstamp
 .. _LICENSE: LICENSE
 .. _Sphinx: http://sphinx-doc.org/
+.. _time format: https://docs.python.org/2/library/time.html#time.strftime
 
 .. |Build Status| image:: https://travis-ci.org/jdillard/sphinx-gitstamp.svg?branch=master
    :target: https://travis-ci.org/jdillard/sphinx-gitstamp
