@@ -27,7 +27,7 @@ For example::
 
 Add ``gitstamp`` to the template, for example::
 
-    {%- if gitstamp %} Last updated on {{ gitstamp }} {%- endif %}
+    {%- if gitstamp %} This page was last updated on {{ gitstamp }}. {%- endif %}
 
 See Who Is Using It
 -------------------
