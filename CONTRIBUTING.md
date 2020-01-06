@@ -30,6 +30,6 @@ You can now make changes to `sphinx_gitstamp_dev`.
 
 ### Testing your changes
 
-1. Run `pep8` on `sphinx_gitstamp_dev`:
+1. Run `pycodestyle` on `sphinx_gitstamp_dev`:
 
-   ```pep8 sphinx_gitstamp_dev```
+   ```pycodestyle sphinx_gitstamp_dev```
