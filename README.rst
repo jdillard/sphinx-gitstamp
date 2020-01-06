@@ -23,7 +23,7 @@ Set the value of ``gitstamp_fmt`` in **conf.py** to the desired `time format`_.
 For example::
 
     # Date format for git timestamps
-    gitstamp_fmt = "%b %d %Y"
+    gitstamp_fmt = "%b %d, %Y"
 
 Add ``gitstamp`` to the template, for example::
 
