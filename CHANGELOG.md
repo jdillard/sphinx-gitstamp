@@ -1,6 +1,15 @@
 Changelog
 =========
 
+0.3.1
+-----
+
+*Release date: 2020-01-05*
+
+* Fix `gitstamp_fmt` overring config with default value.
+* Change `pep8` out with `pycodestyle`.
+* Fix bare except error for `pycodestyle`.
+
 0.3.0
 -----
 
