@@ -85,13 +85,13 @@ def what_build_am_i(app):
         app.warn("gitstamp extension enabled, but no git repository found. No \
             git datestamps will be generated.")
     else:
-        app.add_config_value('gitstamp_fmt', "%b %d %Y", 'html')
         app.connect('html-page-context', page_context_handler)
 
 
 # We can't immediately add a page context handler: we need to wait until we
 # know what the build output format is.
 def setup(app):
+    app.add_config_value('gitstamp_fmt', "%b %d, %Y", 'html')
     app.connect('builder-inited', what_build_am_i)
 
     return {
