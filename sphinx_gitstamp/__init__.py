@@ -80,7 +80,7 @@ def what_build_am_i(app):
     try:
         global g
         g = git.Git('.')
-    except:
+    except BaseException:
         app.info(sys.exc_info()[0])
         app.warn("gitstamp extension enabled, but no git repository found. No \
             git datestamps will be generated.")
