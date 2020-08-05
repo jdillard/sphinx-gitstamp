@@ -75,8 +75,8 @@ def what_build_am_i(app):
     try:
         import git
     except ImportError as e:
-        raise errors.ExtensionError(f"""Unable to import gitpython. Required to generate html. \
-You may need to run: pip install gitpython.
+        raise errors.ExtensionError(f"""Unable to import gitpython. \
+Required to generate html. You may need to run: pip install gitpython.
 
 The error was: {e}
 """)
