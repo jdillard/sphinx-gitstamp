@@ -9,6 +9,7 @@
 # all copies or substantial portions of the Software.
 
 import os
+import sys
 import datetime
 from sphinx import errors
 
@@ -73,9 +74,12 @@ def what_build_am_i(app):
 
     try:
         import git
-    except ImportError:
-        raise errors.ExtensionError("gitpython package not installed. \
-            Required to generate html. Please run: pip install gitpython")
+    except ImportError as e:
+        raise errors.ExtensionError(f"""Unable to import gitpython. Required to generate html. \
+You may need to run: pip install gitpython.
+
+The error was: {e}
+""")
 
     try:
         global g
