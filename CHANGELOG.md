@@ -1,6 +1,14 @@
 Changelog
 =========
 
+0.3.2
+-----
+
+*Release date: 2021-10-24*
+
+* Improve error messaging for `gitpython`.
+* Mark as parallel read/write safe.
+
 0.3.1
 -----
 
