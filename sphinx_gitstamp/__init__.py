@@ -99,5 +99,6 @@ def setup(app):
     app.connect('builder-inited', what_build_am_i)
 
     return {
-        'parallel_read_safe': False
+        'parallel_read_safe': True,
+        'parallel_write_safe': True
     }
