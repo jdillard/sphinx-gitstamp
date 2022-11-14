@@ -11,9 +11,9 @@ setup(
     long_description=long_description,
     classifiers=[
         'License :: OSI Approved :: BSD License',
-        'Topic :: Documentation',
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 3",
+        'Topic :: Documentation :: Sphinx',
+        'Programming Language :: Python :: 3',
+        'Framework :: Sphinx :: Extension',
       ],
     version=__version__,
     author='Jared Dillard',
