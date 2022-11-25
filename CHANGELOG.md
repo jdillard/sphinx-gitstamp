@@ -4,7 +4,7 @@ Changelog
 0.3.3
 -----
 
-*Release date: TBD*
+*Release date: 2022-11-25*
 
 * Clean up package classifiers
 * Remove deprecated **README** sections
