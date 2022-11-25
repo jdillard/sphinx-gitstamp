@@ -29,12 +29,6 @@ Add ``gitstamp`` to the template, for example::
 
     {%- if gitstamp %} This page was last updated on {{ gitstamp }}. {%- endif %}
 
-See Who Is Using It
--------------------
-
-You can use `GitHub search`_ or `libraries.io`_ to see who is using
-**sphinx-sitemap**.
-
 Contributing
 ------------
 
@@ -54,11 +48,9 @@ University (http://www.cmu.edu/computing/).
 .. _CONTRIBUTING: CONTRIBUTING.md
 .. _cyrus-imapd: https://github.com/cyrusimap/cyrus-imapd/pull/2029/files
 .. _extensions: https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-extensions
-.. _GitHub search: https://github.com/search?utf8=%E2%9C%93&q=sphinx-gitstamp+extension%3Atxt&type=
 .. _gitpython: https://gitpython.readthedocs.io/en/stable/
 .. _html_extra_path: http://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_extra_path
 .. _language: https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language
-.. _libraries.io: https://libraries.io/pypi/sphinx-gitstamp
 .. _LICENSE: LICENSE
 .. _Sphinx: http://sphinx-doc.org/
 .. _time format: https://docs.python.org/2/library/time.html#time.strftime
