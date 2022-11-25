@@ -1,6 +1,15 @@
 Changelog
 =========
 
+0.3.3
+-----
+
+*Release date: TBD*
+
+* Clean up package classifiers
+* Remove deprecated **README** sections
+* Add **LICENSE** to source distributions
+
 0.3.2
 -----
 
