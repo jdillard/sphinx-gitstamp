@@ -13,6 +13,8 @@ import sys
 import datetime
 from sphinx import errors
 
+__version__ = '0.4.0'
+
 # Gets the datestamp of the latest commit on the given file
 # Converts the datestamp into something more readable
 # Skips files whose datestamp we can't parse.
@@ -100,5 +102,6 @@ def setup(app):
 
     return {
         'parallel_read_safe': True,
-        'parallel_write_safe': True
+        'parallel_write_safe': True,
+        'version': __version__,
     }

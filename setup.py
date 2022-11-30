@@ -1,9 +1,8 @@
 from setuptools import setup
 import os
+import sphinx_gitstamp
 
 long_description = open('README.rst' if os.path.exists('README.rst') else 'README.md').read()
-exec(compile(
-    open('sphinx_gitstamp/version.py').read(), 'sphinx_gitstamp/version.py', 'exec'))
 
 setup(
     name='sphinx-gitstamp',
@@ -15,12 +14,11 @@ setup(
         'Programming Language :: Python :: 3',
         'Framework :: Sphinx :: Extension',
       ],
-    version=__version__,
+    version=sphinx_gitstamp.__version__,
     author='Jared Dillard',
     author_email='jared.dillard@gmail.com',
     install_requires=['six', 'sphinx >= 1.2', 'gitpython'],
     url="https://github.com/jdillard/sphinx-gitstamp",
     license='MIT',
-    download_url="https://github.com/jdillard/sphinx-gitstamp/archive/v0.3.3.tar.gz",
     packages=['sphinx_gitstamp'],
  )
