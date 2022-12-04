@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.4.0
+-----
+
+*Release date: TBD*
+
+* Clean up how package versions are handled
+
 0.3.3
 -----
 
