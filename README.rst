@@ -5,7 +5,7 @@ A `Sphinx`_ extension that inserts a git datestamp into the context as
 ``gitstamp``, to make it available for template use in HTML versions of
 your Sphinx documentation.
 
-|Build Status| |PyPI version| |Downloads| |License: BSD|
+|PyPI version| |Downloads| |License: BSD|
 
 Installing
 ----------
@@ -55,8 +55,6 @@ University (http://www.cmu.edu/computing/).
 .. _Sphinx: http://sphinx-doc.org/
 .. _time format: https://docs.python.org/2/library/time.html#time.strftime
 
-.. |Build Status| image:: https://travis-ci.org/jdillard/sphinx-gitstamp.svg?branch=master
-   :target: https://travis-ci.org/jdillard/sphinx-gitstamp
 .. |PyPI version| image:: https://img.shields.io/pypi/v/sphinx-gitstamp.svg
    :target: https://pypi.python.org/pypi/sphinx-gitstamp
 .. |Downloads| image:: https://pepy.tech/badge/sphinx-gitstamp/week
