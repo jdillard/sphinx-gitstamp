@@ -57,7 +57,7 @@ University (http://www.cmu.edu/computing/).
 
 .. |PyPI version| image:: https://img.shields.io/pypi/v/sphinx-gitstamp.svg
    :target: https://pypi.python.org/pypi/sphinx-gitstamp
-.. |Downloads| image:: https://pepy.tech/badge/sphinx-gitstamp/week
+.. |Downloads| image:: https://pepy.tech/badge/sphinx-gitstamp/month
     :target: https://pepy.tech/project/sphinx-gitstamp
 .. |License: BSD| image:: https://img.shields.io/badge/License-BSD-blue.svg
    :target: https://github.com/jdillard/sphinx-gitstamp/blob/master/LICENSE
