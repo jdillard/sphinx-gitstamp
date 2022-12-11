@@ -8,12 +8,13 @@
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
 
+import datetime
 import os
 import sys
-import datetime
+
 from sphinx import errors
 
-__version__ = '0.4.0'
+__version__ = "0.4.0"
 
 # Gets the datestamp of the latest commit on the given file
 # Converts the datestamp into something more readable
@@ -24,12 +25,13 @@ __version__ = '0.4.0'
 
 def page_context_handler(app, pagename, templatename, context, doctree):
     import git
+
     global g
     if g is None:
         # We have already errored about this
         pass
     fullpagename = pagename
-    docsrc = ''
+    docsrc = ""
     try:
         docsrc = app.confdir + "/"
         if docsrc != "/":
@@ -42,7 +44,7 @@ def page_context_handler(app, pagename, templatename, context, doctree):
         return
 
     try:
-        updated = g.log('--pretty=format:%ai', '-n 1', "%s.rst" % fullpagename)
+        updated = g.log("--pretty=format:%ai", "-n 1", "%s.rst" % fullpagename)
         updated = updated[:10]
 
         if updated == "":
@@ -51,57 +53,62 @@ def page_context_handler(app, pagename, templatename, context, doctree):
             # that involves getting the source/output pair into the extension.
             return
 
-        context['gitstamp'] = datetime.datetime.strptime(
-                updated,
-                "%Y-%m-%d"
-            ).strftime(
-                app.config.gitstamp_fmt
-            )
+        context["gitstamp"] = datetime.datetime.strptime(updated, "%Y-%m-%d").strftime(
+            app.config.gitstamp_fmt
+        )
     except git.exc.GitCommandError:
         # File doesn't exist or something else went wrong.
-        raise errors.ExtensionError("Can't fetch git history for %s.rst." %
-                                    fullpagename)
+        raise errors.ExtensionError(
+            "Can't fetch git history for %s.rst." % fullpagename
+        )
     except ValueError:
         # Datestamp can't be parsed.
-        app.info("%s: Can't parse datestamp () %s ) for gitstamp, output \
-            won't have last updated time." % (pagename, updated))
+        app.info(
+            "%s: Can't parse datestamp () %s ) for gitstamp, output \
+            won't have last updated time."
+            % (pagename, updated)
+        )
         pass
 
 
 # Only add the page context handler if we're generating html
 def what_build_am_i(app):
     global g
-    if (app.builder.format != 'html'):
+    if app.builder.format != "html":
         return
 
     try:
         import git
     except ImportError as e:
-        raise errors.ExtensionError(f"""Unable to import gitpython. \
+        raise errors.ExtensionError(
+            f"""Unable to import gitpython. \
 Required to generate html. You may need to run: pip install gitpython.
 
 The error was: {e}
-""")
+"""
+        )
 
     try:
         global g
-        g = git.Git('.')
+        g = git.Git(".")
     except BaseException:
         app.info(sys.exc_info()[0])
-        app.warn("gitstamp extension enabled, but no git repository found. No \
-            git datestamps will be generated.")
+        app.warn(
+            "gitstamp extension enabled, but no git repository found. No \
+            git datestamps will be generated."
+        )
     else:
-        app.connect('html-page-context', page_context_handler)
+        app.connect("html-page-context", page_context_handler)
 
 
 # We can't immediately add a page context handler: we need to wait until we
 # know what the build output format is.
 def setup(app):
-    app.add_config_value('gitstamp_fmt', "%b %d, %Y", 'html')
-    app.connect('builder-inited', what_build_am_i)
+    app.add_config_value("gitstamp_fmt", "%b %d, %Y", "html")
+    app.connect("builder-inited", what_build_am_i)
 
     return {
-        'parallel_read_safe': True,
-        'parallel_write_safe': True,
-        'version': __version__,
+        "parallel_read_safe": True,
+        "parallel_write_safe": True,
+        "version": __version__,
     }
