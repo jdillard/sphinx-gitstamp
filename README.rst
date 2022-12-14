@@ -5,7 +5,7 @@ A `Sphinx`_ extension that inserts a git datestamp into the context as
 ``gitstamp``, to make it available for template use in HTML versions of
 your Sphinx documentation.
 
-|PyPI version| |Downloads| |Code style: Black|
+|PyPI version| |Downloads| |Code style: Black| |Parallel Safe|
 
 Installing
 ----------
@@ -61,3 +61,4 @@ University (http://www.cmu.edu/computing/).
     :target: https://pepy.tech/project/sphinx-gitstamp
 .. |Code style: Black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
+.. |Parallel Safe| image:: https://img.shields.io/badge/parallel%20safe-True-green
