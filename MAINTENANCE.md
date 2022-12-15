@@ -12,7 +12,7 @@ package release.
 
 4. Create latest distribution locally:
 
-       python setup.py sdist
+       python -m build
 
 5. Upload to the test pypi.org repository:
 
