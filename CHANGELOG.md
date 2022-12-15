@@ -7,7 +7,10 @@ Changelog
 *Release date: TBD*
 
 * Clean up how package versions are handled
-* Install pre-commit with isort, black, and flake8 (#7)
+* Install pre-commit with isort, black, and flake8
+  [#7](https://github.com/jdillard/sphinx-gitstamp/pull/7)
+* Update the build process
+  [#8](https://github.com/jdillard/sphinx-gitstamp/pull/8)
 
 0.3.3
 -----
