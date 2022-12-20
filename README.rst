@@ -15,19 +15,25 @@ Directly install via pip by using::
     pip install sphinx-gitstamp
 
 Add ``sphinx_gitstamp`` to the `extensions`_ array in your Sphinx **conf.py**.
-For example::
+For example:
 
-    extensions = ['sphinx_gitstamp']
+.. code-block:: python
+
+   extensions = ['sphinx_gitstamp']
 
 Set the value of ``gitstamp_fmt`` in **conf.py** to the desired `time format`_.
-For example::
+For example:
 
-    # Date format for git timestamps
-    gitstamp_fmt = "%b %d, %Y"
+.. code-block:: python
 
-Add ``gitstamp`` to the template, for example::
+   # Date format for git timestamps
+   gitstamp_fmt = "%b %d, %Y"
 
-    {%- if gitstamp %} This page was last updated on {{ gitstamp }}. {%- endif %}
+Add ``gitstamp`` to the jinja template, for example:
+
+.. code-block:: jinja
+
+   {%- if gitstamp %} This page was last updated on {{ gitstamp }}. {%- endif %}
 
 Contributing
 ------------
