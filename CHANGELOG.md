@@ -11,6 +11,8 @@ Changelog
   [#7](https://github.com/jdillard/sphinx-gitstamp/pull/7)
 * Update the build process
   [#8](https://github.com/jdillard/sphinx-gitstamp/pull/8)
+* Add testing infrastructure
+  [#9](https://github.com/jdillard/sphinx-gitstamp/pull/9)
 
 0.3.3
 -----
