@@ -13,8 +13,11 @@ import os
 import sys
 
 from sphinx import errors
+from sphinx.util.logging import getLogger
 
 __version__ = "0.4.0"
+
+logger = getLogger(__name__)
 
 # Gets the datestamp of the latest commit on the given file
 # Converts the datestamp into something more readable
@@ -58,15 +61,18 @@ def page_context_handler(app, pagename, templatename, context, doctree):
         )
     except git.exc.GitCommandError:
         # File doesn't exist or something else went wrong.
-        raise errors.ExtensionError(
-            "Can't fetch git history for %s.rst." % fullpagename
+        logger.warning(
+            "Can't fetch git history for {:s}.rst.".format(fullpagename),
+            type="gitstamp",
+            subtype="file",
         )
     except ValueError:
         # Datestamp can't be parsed.
-        app.info(
-            "%s: Can't parse datestamp () %s ) for gitstamp, output \
-            won't have last updated time."
-            % (pagename, updated)
+        logger.warning(
+            "{:s}: Can't parse datestamp () {:s} ) for gitstamp, output won't have last updated"
+            "time.".format(pagename, updated),
+            type="gitstamp",
+            subtype="datestamp",
         )
         pass
 
@@ -92,10 +98,16 @@ The error was: {e}
         global g
         g = git.Git(".")
     except BaseException:
-        app.info(sys.exc_info()[0])
-        app.warn(
-            "gitstamp extension enabled, but no git repository found. No \
-            git datestamps will be generated."
+        logger.info(
+            sys.exc_info()[0],
+            type="gitstamp",
+            subtype="info",
+        )
+        logger.error(
+            "gitstamp extension enabled, but no git repository found. No git datestamps will be"
+            "generated.",
+            type="gitstamp",
+            subtype="repo",
         )
     else:
         app.connect("html-page-context", page_context_handler)
