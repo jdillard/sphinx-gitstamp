@@ -1,0 +1,6 @@
+tox
+gitpython
+pre-commit
+flake8
+sphinx
+pytest
