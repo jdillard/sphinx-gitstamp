@@ -62,15 +62,15 @@ def page_context_handler(app, pagename, templatename, context, doctree):
     except git.exc.GitCommandError:
         # File doesn't exist or something else went wrong.
         logger.warning(
-            "Can't fetch git history for {:s}.rst.".format(fullpagename),
+            "sphinx-gitstamp: Can't fetch git history for {:s}.rst.".format(fullpagename),
             type="gitstamp",
             subtype="file",
         )
     except ValueError:
         # Datestamp can't be parsed.
         logger.warning(
-            "{:s}: Can't parse datestamp () {:s} ) for gitstamp, output won't have last updated"
-            "time.".format(pagename, updated),
+            "sphinx-gitstamp: Can't parse datestamp ({:s}) for gitstamp, output on {:s} won't have last updated"
+            "time.".format(updated, pagename),
             type="gitstamp",
             subtype="datestamp",
         )
@@ -103,8 +103,8 @@ The error was: {e}
             type="gitstamp",
             subtype="info",
         )
-        logger.error(
-            "gitstamp extension enabled, but no git repository found. No git datestamps will be"
+        logger.warning(
+            "sphinx-gitstamp: No git repository found. No git datestamps will be"
             "generated.",
             type="gitstamp",
             subtype="repo",
