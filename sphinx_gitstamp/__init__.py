@@ -12,7 +12,6 @@ import datetime
 import os
 import sys
 
-from sphinx import errors
 from sphinx.util.logging import getLogger
 
 __version__ = "0.4.0"
@@ -62,9 +61,7 @@ def page_context_handler(app, pagename, templatename, context, doctree):
     except git.exc.GitCommandError:
         # File doesn't exist or something else went wrong.
         logger.warning(
-            "sphinx-gitstamp: Can't fetch git history for {:s}.rst.".format(
-                fullpagename
-            ),
+            "sphinx-gitstamp: Can't fetch git history for {:s}.rst.".format(pagename),
             type="gitstamp",
             subtype="file",
         )
@@ -87,14 +84,13 @@ def what_build_am_i(app):
 
     try:
         import git
-    except ImportError as e:
-        raise errors.ExtensionError(
-            f"""Unable to import gitpython. \
-Required to generate html. You may need to run: pip install gitpython.
-
-The error was: {e}
-"""
+    except ImportError:
+        logger.warning(
+            "sphinx-gitstamp: gitpython not found. Please ensure it is installed.",
+            type="gitstamp",
+            subtype="dependency",
         )
+        return
 
     try:
         global g
