@@ -67,4 +67,4 @@ University (http://www.cmu.edu/computing/).
     :target: https://pepy.tech/project/sphinx-gitstamp
 .. |Code style: Black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
-.. |Parallel Safe| image:: https://img.shields.io/badge/parallel%20safe-True-green
+.. |Parallel Safe| image:: https://img.shields.io/badge/parallel%20safe-true-brightgreen
