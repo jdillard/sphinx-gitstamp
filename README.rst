@@ -63,7 +63,7 @@ University (http://www.cmu.edu/computing/).
 
 .. |PyPI version| image:: https://img.shields.io/pypi/v/sphinx-gitstamp.svg
    :target: https://pypi.python.org/pypi/sphinx-gitstamp
-.. |Downloads| image:: https://pepy.tech/badge/sphinx-gitstamp/month
+.. |Downloads| image:: https://static.pepy.tech/badge/sphinx-gitstamp/month
     :target: https://pepy.tech/project/sphinx-gitstamp
 .. |Code style: Black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
