@@ -32,7 +32,7 @@ def page_context_handler(app, pagename, templatename, context, doctree):
         # We have already errored about this
         pass
 
-    fullpagename = Path(app.confdir) / pagename
+    fullpagename = Path(app.confdir, pagename)
 
     # Don't barf on "genindex", "search", etc
     if not os.path.isfile("%s.rst" % fullpagename):
