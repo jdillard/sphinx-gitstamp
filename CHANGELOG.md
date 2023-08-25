@@ -6,6 +6,8 @@ Changelog
 
 *Release date: TBD*
 
+* Fix Path use for Sphinx 8
+  [#16](https://github.com/jdillard/sphinx-gitstamp/pull/16)
 * Clean up how package versions are handled
 * Install pre-commit with isort, black, and flake8
   [#7](https://github.com/jdillard/sphinx-gitstamp/pull/7)
