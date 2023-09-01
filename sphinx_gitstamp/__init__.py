@@ -24,6 +24,13 @@ __version__ = "0.4.0"
 # Output to June 7, 2017
 
 
+def find_file_extension(file_name, possible_extensions):
+    for ext in possible_extensions:
+        file_path = os.path.join(file_name, f".{ext}")
+        if os.path.exists(file_path):
+            return file_path
+    return None
+
 def page_context_handler(app, pagename, templatename, context, doctree):
     import git
 
@@ -34,27 +41,25 @@ def page_context_handler(app, pagename, templatename, context, doctree):
 
     fullpagename = Path(app.confdir, pagename)
 
-    # Don't barf on "genindex", "search", etc
-    if not os.path.isfile("%s.rst" % fullpagename):
+    # Find file extension. If not in the list we skip this file.
+    file_path = find_file_extension(fullpagename, app.config.gitstamp_file_types)
+    if file_path is None:
         return
 
     try:
-        updated = g.log("--pretty=format:%ai", "-n 1", "%s.rst" % fullpagename)
-        updated = updated[:10]
-
+        updated = g.log("--pretty=format:%ai", "-n 1", file_path)
+        updated = updated[:25]
         if updated == "":
             # Don't datestamp generated rst's (e.g. imapd.conf.rst)
             # Ideally want to check their source - lib/imapoptions, etc, but
             # that involves getting the source/output pair into the extension.
             return
-
-        context["gitstamp"] = datetime.datetime.strptime(updated, "%Y-%m-%d").strftime(
-            app.config.gitstamp_fmt
-        )
+        dt_object = datetime.datetime.strptime(updated, "%Y-%m-%d %H:%M:%S %z")
+        context["gitstamp"] = dt_object.strftime(app.config.gitstamp_fmt)
     except git.exc.GitCommandError:
         # File doesn't exist or something else went wrong.
         raise errors.ExtensionError(
-            "Can't fetch git history for %s.rst." % fullpagename
+            "Can't fetch git history for %s." % file_path
         )
     except ValueError:
         # Datestamp can't be parsed.
@@ -100,6 +105,7 @@ The error was: {e}
 # know what the build output format is.
 def setup(app):
     app.add_config_value("gitstamp_fmt", "%b %d, %Y", "html")
+    app.add_config_value("gitstamp_file_types", ["rst", "md"], "html")
     app.connect("builder-inited", what_build_am_i)
 
     return {
