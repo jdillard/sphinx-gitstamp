@@ -31,6 +31,7 @@ def find_file_extension(file_name, possible_extensions):
             return file_path
     return None
 
+
 def page_context_handler(app, pagename, templatename, context, doctree):
     import git
 
@@ -58,9 +59,7 @@ def page_context_handler(app, pagename, templatename, context, doctree):
         context["gitstamp"] = dt_object.strftime(app.config.gitstamp_fmt)
     except git.exc.GitCommandError:
         # File doesn't exist or something else went wrong.
-        raise errors.ExtensionError(
-            "Can't fetch git history for %s." % file_path
-        )
+        raise errors.ExtensionError("Can't fetch git history for %s." % file_path)
     except ValueError:
         # Datestamp can't be parsed.
         app.info(
