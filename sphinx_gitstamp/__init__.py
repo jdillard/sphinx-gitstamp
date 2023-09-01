@@ -26,7 +26,7 @@ __version__ = "0.4.0"
 
 def find_file_extension(file_name, possible_extensions):
     for ext in possible_extensions:
-        file_path = os.path.join(file_name, f".{ext}")
+        file_path = str(file_name) + f".{ext}"
         if os.path.exists(file_path):
             return file_path
     return None
@@ -55,6 +55,7 @@ def page_context_handler(app, pagename, templatename, context, doctree):
             # that involves getting the source/output pair into the extension.
             return
         dt_object = datetime.datetime.strptime(updated, "%Y-%m-%d %H:%M:%S %z")
+        print(dt_object)
         context["gitstamp"] = dt_object.strftime(app.config.gitstamp_fmt)
     except git.exc.GitCommandError:
         # File doesn't exist or something else went wrong.
