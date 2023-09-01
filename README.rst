@@ -29,6 +29,13 @@ For example:
    # Date format for git timestamps
    gitstamp_fmt = "%b %d, %Y"
 
+Set the value of ``gitstamp_file_types`` in **conf.py** to the list of file extensions to support.
+For example:
+
+.. code-block:: python
+
+   gitstamp_file_types = ["rst", "md"]
+
 Add ``gitstamp`` to the jinja template, for example:
 
 .. code-block:: jinja
