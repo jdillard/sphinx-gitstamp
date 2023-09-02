@@ -6,6 +6,8 @@ Changelog
 
 *Release date: TBD*
 
+* Add support for markdown files and time information
+  [#18](https://github.com/jdillard/sphinx-gitstamp/pull/18)
 * Fix Path use for Sphinx 8
   [#16](https://github.com/jdillard/sphinx-gitstamp/pull/16)
 * Clean up how package versions are handled
