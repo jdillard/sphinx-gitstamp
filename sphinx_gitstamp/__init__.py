@@ -24,9 +24,9 @@ __version__ = "0.4.0"
 # Output to June 7, 2017
 
 
-def find_file_extension(file_name, possible_extensions):
-    for ext in possible_extensions:
-        file_path = str(file_name) + f".{ext}"
+def find_file_extension(file_name, source_suffix):
+    for ext, _ in source_suffix.items():
+        file_path = str(file_name) + ext
         if os.path.exists(file_path):
             return file_path
     return None
@@ -43,7 +43,7 @@ def page_context_handler(app, pagename, templatename, context, doctree):
     fullpagename = Path(app.confdir, pagename)
 
     # Find file extension. If not in the list we skip this file.
-    file_path = find_file_extension(fullpagename, app.config.gitstamp_file_types)
+    file_path = find_file_extension(fullpagename, app.config.source_suffix)
     if file_path is None:
         return
 
@@ -104,7 +104,6 @@ The error was: {e}
 # know what the build output format is.
 def setup(app):
     app.add_config_value("gitstamp_fmt", "%b %d, %Y", "html")
-    app.add_config_value("gitstamp_file_types", ["rst", "md"], "html")
     app.connect("builder-inited", what_build_am_i)
 
     return {
