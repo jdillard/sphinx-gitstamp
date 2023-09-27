@@ -4,7 +4,7 @@ Changelog
 0.4.0
 -----
 
-*Release date: TBD*
+*Release date: 2023-09-26*
 
 * Add support for markdown files and time information
   [#18](https://github.com/jdillard/sphinx-gitstamp/pull/18)
