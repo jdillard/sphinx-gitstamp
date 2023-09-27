@@ -21,13 +21,13 @@ For example:
 
    extensions = ['sphinx_gitstamp']
 
-Set the value of ``gitstamp_fmt`` in **conf.py** to the desired `time format`_.
+To change the default time format of ``%b %d, %Y``, set the value of ``gitstamp_fmt`` in **conf.py** to the desired `time format`_.
 For example:
 
 .. code-block:: python
 
    # Date format for git timestamps
-   gitstamp_fmt = "%b %d, %Y"
+   gitstamp_fmt = "%Y-%m-%d %H:%M:%S %z"
 
 Add ``gitstamp`` to the jinja template, for example:
 
