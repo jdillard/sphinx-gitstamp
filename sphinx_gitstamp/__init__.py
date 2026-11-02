@@ -62,11 +62,8 @@ def page_context_handler(app, pagename, templatename, context, doctree):
         raise errors.ExtensionError("Can't fetch git history for %s." % file_path)
     except ValueError:
         # Datestamp can't be parsed.
-        app.info(
-            "%s: Can't parse datestamp () %s ) for gitstamp, output \
-            won't have last updated time."
-            % (pagename, updated)
-        )
+        app.info("%s: Can't parse datestamp () %s ) for gitstamp, output \
+            won't have last updated time." % (pagename, updated))
         pass
 
 
@@ -79,23 +76,19 @@ def what_build_am_i(app):
     try:
         import git
     except ImportError as e:
-        raise errors.ExtensionError(
-            f"""Unable to import gitpython. \
+        raise errors.ExtensionError(f"""Unable to import gitpython. \
 Required to generate html. You may need to run: pip install gitpython.
 
 The error was: {e}
-"""
-        )
+""")
 
     try:
         global g
         g = git.Git(".")
     except BaseException:
         app.info(sys.exc_info()[0])
-        app.warn(
-            "gitstamp extension enabled, but no git repository found. No \
-            git datestamps will be generated."
-        )
+        app.warn("gitstamp extension enabled, but no git repository found. No \
+            git datestamps will be generated.")
     else:
         app.connect("html-page-context", page_context_handler)
 
